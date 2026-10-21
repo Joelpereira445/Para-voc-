@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Isis Rakele ✨❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f172a;
+      font-family: 'Outfit', sans-serif;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .background-glow {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(244,114,182,0.25) 0%, rgba(251,113,133,0) 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      filter: blur(40px);
+    }
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 36px 24px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(244, 114, 182, 0.15);
+      color: #f472b6;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(244, 114, 182, 0.2);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #f8fafc;
+      font-size: 1.85rem;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    p.mensagem {
+      color: #cbd5e1;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      min-height: 54px;
+      position: relative;
+    }
+    button {
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+    }
+    #btn-sim {
+      background: linear-gradient(135deg, #f472b6 0%, #e11d48 100%);
+      color: white;
+      box-shadow: 0 10px 20px rgba(225, 29, 72, 0.3);
+    }
+    #btn-sim:active {
+      transform: scale(0.95);
+    }
+    #btn-nao {
+      background: rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      transition: left 0.25s ease, top 0.25s ease, background 0.2s;
+    }
+    #resultado {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+    }
+    #resultado h2 {
+      font-family: 'Playfair Display', serif;
+      color: #f472b6;
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+    }
+    #resultado p {
+      color: #f1f5f9;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background-glow"></div>
+
+  <div class="card">
+    <div id="conteudo-inicial">
+      <span class="badge">Especialmente para você ✨</span>
+      <h1>Isis Rakele</h1>
+      <p class="mensagem">
+        Mesmo com a distância, ter sua presença na minha vida deixa os meus dias muito mais bonitos. Gostaria de continuar compartilhando bons momentos e cultivando essa sintonia leve que temos! ❤️
+      </p>
+
+      <div class="buttons-container">
+        <button id="btn-sim" onclick="aceitou()">Sim! ✨</button>
+        <button id="btn-nao" onmouseover="fugir(this)" onclick="fugir(this)" ontouchstart="fugir(this)">Não 🙈</button>
+      </div>
+    </div>
+
+    <div id="resultado">
+      <h2>Que benção! 💖</h2>
+      <p>
+        Que ótimo saber disso, Isis! Te ter por perto torna meus dias muito melhores. Vamos continuar aproveitando cada momento! ✨
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function fugir(btn) {
+      const margin = 20;
+      const maxX = window.innerWidth - btn.offsetWidth - margin;
+      const maxY = window.innerHeight - btn.offsetHeight - margin;
+
+      const randomX = Math.max(margin, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(margin, Math.floor(Math.random() * maxY));
+
+      btn.style.position = 'fixed';
+      btn.style.left = randomX + 'px';
+      btn.style.top = randomY + 'px';
+      btn.style.zIndex = '999';
+    }
+
+    function aceitou() {
+      document.getElementById('conteudo-inicial').style.display = 'none';
+      document.getElementById('resultado').style.display = 'block';
+
+      // Dispara a chuva de corações/confetes
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#f472b6', '#fb7185', '#e11d48', '#ffffff']
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
